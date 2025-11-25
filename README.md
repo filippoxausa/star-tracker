@@ -40,10 +40,11 @@ Clone this repository, navigate to the project root, and ensure the `images/` fo
 
 Recommended structure:
 
+```
 ├── images/ # Source frames: 0.jpg to 49.jpg
 ├── main.py # Main script containing the full pipeline
 └── requirements.txt # List of dependencies
-
+```
 
 Upon execution, the script will automatically generate two output files in the root directory:
 - `bounding_boxes.txt`: Contains the coordinates of detected stars for each frame.
