@@ -55,7 +55,7 @@ def task_2_denoising(image_folder):
         # operazione apertura (effettua erosione)
         clean_img = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=1)
 		# operazione chiusura (effettua dilatazione)
-        final_img = cv2.morphologyEx(clean_img, cv2.MORPH_CLOSE, kernel, iterations=1)
+        # final_img = cv2.morphologyEx(clean_img, cv2.MORPH_CLOSE, kernel, iterations=1)
         
         cleaned_images.append(clean_img)
 
@@ -96,8 +96,6 @@ def task_3_star_detection(cleaned_images):
             # lista per salvare le coordinate di questo frame: [x1, y1, x2, y2] per ogni stella
             frame_data = []
 
-            print(f"Immagine {idx} - Stelle trovate: {len(contours)}")
-
             for contour in contours:
                 # x, y angoli in alto a sinistra
                 # w, h larghezza e altezza
@@ -105,20 +103,17 @@ def task_3_star_detection(cleaned_images):
 
                 x2 = x + w
                 y2 = y + h
-
-                frame_data.append([x, y, x2, y2])
-                
-                # disegna un rettangolo verde intorno al contorno trovato
-                
                 
                 M = cv2.moments(contour)
-                # controllo M.m00 = area non nulla
+                # controllo M.m00 per evitare oggetti troppo piccoli (falsi positivi)
                 if M["m00"] >= 9:
                     cX = int(M["m10"] / M["m00"])
                     cY = int(M["m01"] / M["m00"])
                     cv2.rectangle(output_img, (x, y), (x+w, y+h), (0, 255, 0), 2)
                     cv2.circle(output_img, (cX, cY), 2, (0, 0, 255), -1)
+                    frame_data.append([x, y, x2, y2])
                 
+            print(f"Immagine {idx} - Stelle trovate: {len(frame_data)}")
             
             f.write(" ".join(str(bbox) for bbox in frame_data) + "\n")
             cv2.imshow("Star Detection", output_img)
