@@ -57,9 +57,9 @@ def task_2_denoising(image_folder):
 		# operazione chiusura (effettua dilatazione)
         final_img = cv2.morphologyEx(clean_img, cv2.MORPH_CLOSE, kernel, iterations=1)
         
-        cleaned_images.append(final_img)
+        cleaned_images.append(clean_img)
 
-        combined = np.hstack((img, final_img))
+        combined = np.hstack((img, clean_img))
         
         cv2.putText(combined, "Originale", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 2)
         cv2.putText(combined, "Pulita", (img.shape[1] + 10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 2)
@@ -109,14 +109,14 @@ def task_3_star_detection(cleaned_images):
                 frame_data.append([x, y, x2, y2])
                 
                 # disegna un rettangolo verde intorno al contorno trovato
-                cv2.rectangle(output_img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                
                 
                 M = cv2.moments(contour)
                 # controllo M.m00 = area non nulla
-                if M["m00"] != 0:
+                if M["m00"] >= 9:
                     cX = int(M["m10"] / M["m00"])
                     cY = int(M["m01"] / M["m00"])
-                    
+                    cv2.rectangle(output_img, (x, y), (x+w, y+h), (0, 255, 0), 2)
                     cv2.circle(output_img, (cX, cY), 2, (0, 0, 255), -1)
                 
             
