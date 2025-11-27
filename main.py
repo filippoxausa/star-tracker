@@ -52,9 +52,9 @@ def task_2_denoising(image_folder):
         # per lavorare con nero "puro", da scala di grigi a binario
         _, binary = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
 
-        # operazione apertura (effettua erosione)
+        # operazione apertura (effettua erosione seguita da dilatazione)
         clean_img = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=1)
-		# operazione chiusura (effettua dilatazione)
+		# operazione chiusura (effettua dilatazione seguita da erosione)
         # final_img = cv2.morphologyEx(clean_img, cv2.MORPH_CLOSE, kernel, iterations=1)
         
         cleaned_images.append(clean_img)
