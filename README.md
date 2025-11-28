@@ -69,7 +69,7 @@ The script identifies contours in the cleaned binary images. For every detected 
 All bounding box coordinates for a frame are written to `result/bounding_boxes.txt` on a single line (format: `x1 y1 x2 y2 ...`).
 
 ### 4. Motion Tracking
-Finally, the script compares the positions of star centroids between Frame `t` and Frame `t+1`. By matching stars based on proximity, it calculates the average displacement `(Δx, Δy)` of the star field. This vector represents the satellite's motion relative to the stars and is logged to `result/motion_log.txt`.
+Finally, the script compares the positions of star centroids between Frame `t` and Frame `t+1`. By matching stars based on proximity, it calculates the displacement vectors `(Δx, Δy)` of the star field. A median filter is applied to these vectors to robustly estimate the satellite's frame-to-frame motion, ignoring outliers caused by noise. The results (horizontal and vertical shift) are logged to `result/motion_log.txt`.
 
 ---
 
