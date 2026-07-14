@@ -13,6 +13,10 @@ This project implements a complete pipeline that automatically:
 3. **Detects** stars, calculating their bounding boxes and centroids.
 4. **Tracks** the satellite's motion by calculating the average displacement of stars between consecutive frames.
 
+<img width="400" height="200" alt="Denoising Comparison_screenshot_14 07 2026" src="https://github.com/user-attachments/assets/3f61b548-9d59-438a-ad58-d32a59b32e97" />
+
+<img width="200" height="200" alt="Star Detection_screenshot_14 07 2026" src="https://github.com/user-attachments/assets/4c337485-b13d-47d9-b7a7-d5f7dc2428d3" />
+
 ---
 
 ## Requirements & Installation
