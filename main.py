@@ -61,8 +61,8 @@ def task_2_denoising(image_folder):
 
         combined = np.hstack((img, clean_img))
         
-        cv2.putText(combined, "Originale", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 2)
-        cv2.putText(combined, "Pulita", (img.shape[1] + 10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 2)
+        cv2.putText(combined, "Original", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 2)
+        cv2.putText(combined, "Filtered", (img.shape[1] + 10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 2)
         
         cv2.imshow("Denoising Comparison", combined)
         
